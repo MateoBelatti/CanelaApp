@@ -23,7 +23,13 @@ class Server {
             next();
         });
         //cors
-        this.app.use( cors());
+        this.app.use( cors(
+            {
+                origin: 'http://localhost:5173', // Vite
+                methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+                allowedHeaders: ['Content-Type', 'Authorization'],
+            }
+        ));
     }
     routes(){
         //this.app.use("/rutas", importacionDeRutas);

@@ -27,7 +27,8 @@ export class DataBase {
     public static async getInstance() : Promise<Sequelize>{
         if (!this.instance) {
             this.instance = await DataBase.connectDB();
-        } 
+        }
+        console.log("Conectado a la base de datos");
         return this.instance;
     }
 }

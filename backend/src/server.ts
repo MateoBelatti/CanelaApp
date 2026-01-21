@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { DataBase } from './config/db.connect';
+import { initModels } from './config/initModels';
 
 class Server {
     public app: express.Application;
@@ -36,7 +36,9 @@ class Server {
         //this.app.use("/rutas", importacionDeRutas);
     }
     async start(callback: () => void) {
-        await DataBase.getInstance();
+        // metodo para conectar con DB
+        await initModels();
+        
         this.app.listen(this.port, callback);
     }
 }

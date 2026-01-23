@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import { initModels } from './config/initModels';
+import { errorHandler } from './middlewares/errorHandler.middleware';
 
 class Server {
     public app: express.Application;
@@ -31,6 +32,7 @@ class Server {
                 allowedHeaders: ['Content-Type', 'Authorization'],
             }
         ));
+        this.app.use(errorHandler);
     }
     routes(){
         //this.app.use("/rutas", importacionDeRutas);

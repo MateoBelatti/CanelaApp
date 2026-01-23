@@ -1,89 +1,74 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import UsuarioService from "../services/usuario.service";
-import { IUsuario } from "../model/interfaces/usuario.interface";
 import HttpError from "../utils/httpError";
-import { CreateUsuarioDTO, UpdateUsuarioDTO} from "../DTOs/usuario.dto";
-import { success } from "zod";
+import { CreateUsuarioDTO, UpdateUsuarioDTO, UsuarioDTO } from "../DTOs/usuario.dto";
 
 class UsuarioController {
-    async getAllUsers(req : Request, res : Response ) {
+    async getAllUsers(req : Request, res : Response, next : NextFunction ) {
         try {
-            const usuarios : IUsuario[] = await UsuarioService.findAll();
-            if (usuarios.length === 0) {
-                return res.status(404).json({ success : true, data : []});
-            }
+            const usuarios : UsuarioDTO[] = await UsuarioService.findAll();
             res.status(200).json({ success : true, data : usuarios})
         } catch (error) {
-            if (error instanceof HttpError) {
-                return res.status(400).json({error : error.message})
-            }
+            next(error);
         }
     }
 
-    async getUserById(req : Request, res : Response ) {
+    async getUserById(req : Request, res : Response, next : NextFunction ) {
         try {
-            const { idUser } = req.body;
-            if (!idUser) {
-                throw new HttpError("Body sin parametro idUser", 400);
+            const { id } = req.params;
+            if (!id) {
+                throw new HttpError("Parametro id requerido", 400);
             }
-            const usuario = await UsuarioService.findById(Number(idUser));
+            const usuario : UsuarioDTO | null = await UsuarioService.findById(Number(id));
             res.status(200).json({success : true, data : usuario})
         } catch (error) {
-            if (error instanceof HttpError) {
-                return res.status(400).json({error : error.message});
-            }
+            next(error);
         }
     }
 
-    async createUser(req : Request, res : Response ) {
+    async createUser(req : Request, res : Response,next : NextFunction ) {
         try {
-            const data : CreateUsuarioDTO = {
-                nombre : req.body.nombre,
-                email : req.body.email,
-                passwordHash : req.body.passwordHash,
-                rol : req.body.rol ?? "USER",
-                direccion : req.body.direccion ?? null,
-                telefono : req.body.telefono ?? null
-            }
+            const data : CreateUsuarioDTO = req.body;
             const usuarioCreado = await UsuarioService.create(data);
             if (!usuarioCreado) {
                 throw new HttpError("No se pudo crear usuario", 400)
             }
-            res.json(201).json({success : true, data : usuarioCreado});
+            res.json(201).json({
+                success : true,
+                data : usuarioCreado
+            });
         } catch (error) {
-            if (error instanceof HttpError) {
-                return res.status(400).json({error : error.message});
-            }
+            next(error);
         }
     }
 
-    updateUser(req : Request, res : Response ) {
+    async updateUser(req : Request, res : Response, next : NextFunction ) {
         try {
-            const data : UpdateUsuarioDTO = {
-                nombre : req.body.nombre,
-                email : req.body.email,
-                direccion : req.body.direccion ?? null,
-                telefono : req.body.telefono ?? null
+            const { id } = req.params;
+            if (!id) {
+                throw new HttpError("Parametro id requerido", 400);
             }
-            const userUpdate = UsuarioService.update(data, Number(req.params.idUser));
+            const data : UpdateUsuarioDTO = req.body;
+            const userUpdate = await UsuarioService.update(data, Number(id));
             if (!userUpdate) {
                 throw new HttpError("No se pudo actualizar usuario", 400)
             }
+            res.status(200).json({success : true, data : userUpdate});
         } catch (error) {
-            if (error instanceof HttpError) {
-                return res.status(400).json({error : error.message});
-            }
+            next(error);
         }
     }
 
-    async deleteUser(req : Request, res : Response ) {
+    async deleteUser(req : Request, res : Response, next : NextFunction ) {
         try {
-            const destroy = await UsuarioService.delete(Number(req.params.idUser));
+            const { id } = req.params;
+            if (!id) {
+                throw new HttpError("Parametro id requerido", 400);
+            }
+            const destroy = await UsuarioService.delete(Number(id));
             res.status(200).json({success : true, data : "Usuario Eliminado"})
         } catch (error) {
-            if (error instanceof HttpError) {
-                return res.status(400).json({error : error.message});
-            }
+            next(error);
         }
     }
 }

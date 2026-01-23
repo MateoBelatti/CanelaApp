@@ -1,10 +1,22 @@
-import { UsuarioModel } from "../model/usuario.model";
-import UsuarioInterfaceRepo from "./interfaces/IUsuarioRepository";
-import { CreateUsuarioDTO, UpdateUsuarioDTO } from "../DTOs/usuario.dto";
-import { IUsuario } from "../model/interfaces/usuario.interface";
-import HttpError from "../utils/httpError";
+import { UsuarioModel } from "../model/usuario.model"; // Modelo de sequelize
+import UsuarioInterfaceRepo from "./interfaces/IUsuarioRepository"; // interface del repository
+import { IUsuario } from "../model/interfaces/usuario.interface"; // interface de usuario
+import { CreateUsuarioDTO, UpdateUsuarioDTO, UsuarioDTO } from "../DTOs/usuario.dto"; // importacionies de las DTOs
+import HttpError from "../utils/httpError"; // Manejo de errores
 
 class UsuarioRepository implements UsuarioInterfaceRepo {
+    async findByEmail(dataEmail: string): Promise<IUsuario | null> {
+        try {
+            const usuario = await UsuarioModel.findOne({
+            where: { 
+                email: dataEmail 
+            }
+            });
+            return usuario;
+        } catch (error) {
+            throw error;
+        }
+    }
 
     async findAll(): Promise<IUsuario[]> {
         try {
@@ -22,12 +34,11 @@ class UsuarioRepository implements UsuarioInterfaceRepo {
             }));
             return usuariosArray;
         } catch (error) {
-            if (error instanceof HttpError) throw error;
-            throw new HttpError("Error al obtener usuarios", 500);
+            throw error;
         }
     }
 
-    async findById(idUsuario: number): Promise<IUsuario | null> {
+    async findById(idUsuario: number): Promise<IUsuario> {
         try {
             // busca usuario por su ID, si no encuentra lanza un error 404
             const usuario = await UsuarioModel.findByPk(idUsuario);
@@ -42,8 +53,7 @@ class UsuarioRepository implements UsuarioInterfaceRepo {
                 telefono: usuario.telefono,
             };
         } catch (error) {
-            if (error instanceof HttpError) throw error;
-            throw new HttpError("Error al obtener usuario por ID", 500);
+            throw error;
         }
     }
 
@@ -51,22 +61,13 @@ class UsuarioRepository implements UsuarioInterfaceRepo {
         try {
             //crea usuario con datos pasados por parametros y devuelve el usuario creado
             const newUser = await UsuarioModel.create(data);
-            return {
-                id: newUser.id,
-                nombre: newUser.nombre,
-                email: newUser.email,
-                passwordHash: newUser.passwordHash,
-                rol: newUser.rol,
-                direccion: newUser.direccion,
-                telefono: newUser.telefono,
-            };
+            return newUser;
         } catch (error) {
-            if (error instanceof HttpError) throw error;
-            throw new HttpError("Error al crear usuario", 500);
+            throw error;
         }
     }
 
-    async update( data: UpdateUsuarioDTO, idUser : number ): Promise<IUsuario> {
+    async update( data: UpdateUsuarioDTO, idUser : number ): Promise<UsuarioDTO> {
         try {
             // busca usuario por id,
             // si no existe lanza un error
@@ -78,19 +79,16 @@ class UsuarioRepository implements UsuarioInterfaceRepo {
             usuario.nombre = data.nombre;
             usuario.telefono = data.telefono;
             await usuario.save(); // Guarda los cambios 
+
             
             return { // devuelve usuario actualizado
-                id: usuario.id,
                 nombre: usuario.nombre,
                 email: usuario.email,
-                passwordHash: usuario.passwordHash,
-                rol: usuario.rol,
-                direccion: usuario.direccion,
-                telefono: usuario.telefono,
+                direccion: usuario.direccion ?? null,
+                telefono: usuario.telefono ?? null,
             };
         } catch (error) {
-            if (error instanceof HttpError) throw error;
-            throw new HttpError("Error al actualizar usuario", 500);
+            throw error;
         }
     }
 
@@ -102,8 +100,7 @@ class UsuarioRepository implements UsuarioInterfaceRepo {
 
             await usuario.destroy();
         } catch (error) {
-            if (error instanceof HttpError) throw error;
-            throw new HttpError("Error al eliminar usuario", 500);
+            throw error;
         }
     }
 }

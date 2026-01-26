@@ -15,5 +15,7 @@ export async function initModels() {
   // Ej: UsuarioModel.hasMany(OtroModel);
   // OtroModel.belongsTo(UsuarioModel);
 
+  await sequelize.sync({ alter: true });
+
   return sequelize;
 }

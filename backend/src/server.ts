@@ -4,6 +4,9 @@ import morgan from 'morgan';
 import { initModels } from './config/initModels';
 import { errorHandler } from './middlewares/errorHandler.middleware';
 
+//Importacion de rutas
+import routerUsuario from './routes/usuario.routes';
+
 class Server {
     public app: express.Application;
     public port: number;
@@ -35,6 +38,7 @@ class Server {
         this.app.use(errorHandler);
     }
     routes(){
+        this.app.use("/api", routerUsuario)
         //this.app.use("/rutas", importacionDeRutas);
     }
     async start(callback: () => void) {

@@ -18,9 +18,16 @@ interface UpdateUsuarioDTO{
     direccion : string,
     telefono : string 
 }
+interface UsuarioLoginDTO{
+    id: number,
+    nombre : string,
+    email : string,
+    rol : string
+}
 
 export  {
     UsuarioDTO,
     CreateUsuarioDTO,
-    UpdateUsuarioDTO
+    UpdateUsuarioDTO,
+    UsuarioLoginDTO
 }

@@ -15,10 +15,10 @@ export class DataBase {
             if (!dbPassword || !dbUser) {
                 throw new Error("Error en Usuario o Conraseña de DB");
             }
-            const sequelize = new Sequelize('canela_artesanias', dbUser, dbPassword, {
-                host: 'localhost', // o tu host
-                dialect: 'mysql', // 'mysql', 'sqlite', 'mssql', etc. [3]
-            });
+                const sequelize = new Sequelize('canela_artesanias', dbUser, dbPassword, {
+                    host: 'localhost', // o tu host
+                    dialect: 'mysql', // 'mysql', 'sqlite', 'mssql', etc. [3]
+                });
 
             await sequelize.authenticate();
             return sequelize;

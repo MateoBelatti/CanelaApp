@@ -33,7 +33,7 @@ class UsuarioController {
             if (!usuarioCreado) {
                 throw new HttpError("No se pudo crear usuario", 400)
             }
-            res.json(201).json({
+            res.status(201).json({
                 success : true,
                 data : usuarioCreado
             });

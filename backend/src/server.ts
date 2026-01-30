@@ -6,6 +6,7 @@ import { errorHandler } from './middlewares/errorHandler.middleware';
 
 //Importacion de rutas
 import routerUsuario from './routes/usuario.routes';
+import routeAuth from './routes/auth.routes';
 
 class Server {
     public app: express.Application;
@@ -38,7 +39,8 @@ class Server {
         this.app.use(errorHandler);
     }
     routes(){
-        this.app.use("/api", routerUsuario)
+        this.app.use("/api", routerUsuario);
+        this.app.use("/api", routeAuth);
         //this.app.use("/rutas", importacionDeRutas);
     }
     async start(callback: () => void) {

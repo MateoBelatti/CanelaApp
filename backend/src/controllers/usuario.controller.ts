@@ -26,7 +26,7 @@ class UsuarioController {
         }
     }
 
-    async createUser(req : Request, res : Response,next : NextFunction ) {
+    async createUser(req: Request , res : Response,next : NextFunction ) {
         try {
             const data : CreateUsuarioDTO = req.body;
             const usuarioCreado = await UsuarioService.create(data);
@@ -66,7 +66,7 @@ class UsuarioController {
                 throw new HttpError("Parametro id requerido", 400);
             }
             const destroy = await UsuarioService.delete(Number(id));
-            res.status(200).json({success : true, data : "Usuario Eliminado"})
+            res.status(200).json({success : true, data : "Usuario Eliminado -" , destroy : destroy})
         } catch (error) {
             next(error);
         }

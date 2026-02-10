@@ -1,5 +1,5 @@
 import usuarioRepository from "../repository/usuario.repository";
-import { IUsuario } from "../model/interfaces/usuario.interface";
+import { IUsuario } from "../model/interfaces/interfaces";
 import { CreateUsuarioDTO, UpdateUsuarioDTO, UsuarioDTO } from "../DTOs/usuario.dto";
 import HttpError from "../utils/httpError";
 

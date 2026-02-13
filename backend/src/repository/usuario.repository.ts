@@ -65,6 +65,7 @@ class UsuarioRepository implements UsuarioInterfaceRepo {
         await usuario.save(); // Guarda los cambios 
 
         return { // devuelve usuario actualizado
+            id: usuario.id,
             nombre: usuario.nombre,
             email: usuario.email,
             direccion: usuario.direccion ?? null,

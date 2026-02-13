@@ -16,13 +16,13 @@ routerUsuario.get("/:id", UsuarioController.getUserById);
 
 routerUsuario.post(
     "/",
-    [validateBody(updateUsuarioSchema)],
+    [validateBody(createUsuarioSchema)],
     UsuarioController.createUser
 );
 
 routerUsuario.put(
     "/:id",
-    [authenticate, authorizeRole("ADMIN"), validateBody(createUsuarioSchema)],
+    [authenticate, authorizeRole("ADMIN"), validateBody(updateUsuarioSchema)],
     UsuarioController.updateUser
 
 );

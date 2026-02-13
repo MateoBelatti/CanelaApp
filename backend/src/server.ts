@@ -9,7 +9,6 @@ import routerUsuario from './routes/usuario.routes';
 import routeAuth from './routes/auth.routes';
 import routerCategoria from './routes/categoria.routes';
 import routerProducto from './routes/producto.routes';
-import routerCompra from './routes/compra.routes';
 import routerCarrito from './routes/carrito.routes';
 
 class Server {
@@ -45,7 +44,6 @@ class Server {
     routes(){
         this.app.use("/api/usuario", routerUsuario);
         this.app.use("/api", routeAuth);
-        this.app.use("/api/compra", routerCompra)
         this.app.use("/api/categoria", routerCategoria);
         this.app.use("/api/producto", routerProducto);
         this.app.use("/api/carrito", routerCarrito);

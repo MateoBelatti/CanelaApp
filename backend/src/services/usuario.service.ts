@@ -1,7 +1,8 @@
 import usuarioRepository from "../repository/usuario.repository";
-import { IUsuario } from "../model/interfaces/usuario.interface";
+import { IUsuario } from "../model/interfaces/interfaces";
 import { CreateUsuarioDTO, UpdateUsuarioDTO, UsuarioDTO } from "../DTOs/usuario.dto";
 import HttpError from "../utils/httpError";
+import carritoService from "./carrito.service";
 
 class UsuarioService {
 
@@ -9,6 +10,7 @@ class UsuarioService {
         const usuariosArray : IUsuario[] =  await usuarioRepository.findAll();
         const usuariosDTOs : UsuarioDTO[] = usuariosArray.map((user) => (
             {
+                id : user.id,
                 nombre : user.nombre,
                 email : user.email,
                 direccion : user.direccion ?? null,
@@ -24,6 +26,7 @@ class UsuarioService {
             throw new HttpError("Usuario no encontrado", 404);
         }
         return ({
+            id : usuario.id,
             nombre : usuario.nombre,
             email : usuario.email,
             direccion : usuario.direccion ?? null,
@@ -45,6 +48,10 @@ class UsuarioService {
                         telefono : data.telefono ?? null
                     }
         const usuarioCreate : UsuarioDTO = await usuarioRepository.create(datosCreate);
+        const carrito = await carritoService.findCarritoByUser(usuarioCreate.id);
+        if (carrito === null) {
+            await carritoService.creteCarrito({ id_usuario : Number(usuarioCreate.id)});
+        }
         return usuarioCreate;
     }
 

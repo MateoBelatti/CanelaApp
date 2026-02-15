@@ -7,6 +7,9 @@ import { errorHandler } from './middlewares/errorHandler.middleware';
 //Importacion de rutas
 import routerUsuario from './routes/usuario.routes';
 import routeAuth from './routes/auth.routes';
+import routerCategoria from './routes/categoria.routes';
+import routerProducto from './routes/producto.routes';
+import routerCarrito from './routes/carrito.routes';
 
 class Server {
     public app: express.Application;
@@ -39,8 +42,11 @@ class Server {
         this.app.use(errorHandler);
     }
     routes(){
-        this.app.use("/api", routerUsuario);
+        this.app.use("/api/usuario", routerUsuario);
         this.app.use("/api", routeAuth);
+        this.app.use("/api/categoria", routerCategoria);
+        this.app.use("/api/producto", routerProducto);
+        this.app.use("/api/carrito", routerCarrito);
         //this.app.use("/rutas", importacionDeRutas);
     }
     async start(callback: () => void) {

@@ -1,6 +1,5 @@
-import { IUsuario } from "../../model/interfaces/usuario.interface";
+import { IUsuario } from "../../model/interfaces/interfaces";
 import { CreateUsuarioDTO, UpdateUsuarioDTO, UsuarioDTO } from "../../DTOs/usuario.dto";
-import { promises } from "node:dns";
 
 interface UsuarioInterfaceRepo {
     findAll(): Promise<IUsuario[]>;

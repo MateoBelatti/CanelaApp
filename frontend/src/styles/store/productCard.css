@@ -1,0 +1,47 @@
+.product-card {
+    width: 100%; /* Importante para que ocupe el col-6 */
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%; /* Para que todas las cards de la fila midan lo mismo */
+}
+
+.card-img-container {
+    background-color: #f8f8f8;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem; /* Padding reducido para que la imagen no sea minúscula */
+}
+
+/* MEDIA QUERY PARA MÓVIL (2 productos por fila) */
+@media (max-width: 576px) {
+    .card-body {
+        padding: 0.75rem !important; /* Menos espacio interno */
+    }
+
+    .product-title {
+        font-size: 0.9rem !important; /* Texto más pequeño */
+        margin-bottom: 0.5rem !important;
+    }
+
+    .category-text {
+        font-size: 0.6rem !important;
+    }
+
+    .description-text {
+        display: none; /* Ocultamos la descripción en móvil para que no se vea amontonado */
+    }
+
+    .price-tag {
+        font-size: 0.9rem !important;
+    }
+
+    .btn-outline-custom {
+        padding: 0.2rem 0.5rem !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* Si el icono hace que el botón sea muy ancho, puedes ocultar la palabra 'Añadir' */
+    /* .btn-outline-custom span { display: none; } */
+}

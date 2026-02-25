@@ -1,0 +1,18 @@
+.featured-section {
+  background-color: #f9f9f9;
+}
+
+.section-label {
+  color: #ff6b6b;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.section-title {
+  margin-top: 0.5rem;
+}
+
+.section-description {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}

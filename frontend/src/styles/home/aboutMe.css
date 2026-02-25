@@ -1,0 +1,71 @@
+/* Sección General */
+.about-me-section {
+  background-color: #f2ede4; /* Color crema similar a la imagen */
+  color: #1a1a1a;
+}
+
+.profile-img-wrapper {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Tipografía */
+.section-title {
+  font-family: 'Playfair Display', serif; /* Importante para el look LUXE */
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.section-description {
+  color: #5a5a5a;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Estilos para las métricas */
+.stats-container {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0;
+  color: #000;
+}
+
+.stat-number sup {
+  font-size: 1.2rem;
+  top: -0.8em;
+  font-weight: 400;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #777;
+  text-transform: none;
+  margin-top: 5px;
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+  }
+}

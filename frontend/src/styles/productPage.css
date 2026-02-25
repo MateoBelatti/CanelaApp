@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap');
+
+.page-container {
+  font-family: 'Inter', sans-serif;
+  background-color: #ebc9c9;
+  min-height: 100vh;
+}
+
+.section-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #888;
+  font-weight: 600;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.section-description {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Ajuste para que la grid de Bootstrap se vea limpia */
+.product-grid {
+  margin-top: 2rem;
+}

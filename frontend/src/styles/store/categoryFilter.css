@@ -1,0 +1,25 @@
+/* Botón base */
+.btn-filter {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 8px 20px;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+  text-transform: uppercase;
+}
+
+/* Botón activo (Naranja tierra de la imagen) */
+.btn-filter.active {
+  background-color: #c48b61;
+  border-color: #c48b61;
+  color: white;
+}
+
+.btn-filter:hover:not(.active) {
+  border-color: #c48b61;
+  color: #c48b61;
+}

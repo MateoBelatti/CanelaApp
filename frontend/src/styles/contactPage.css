@@ -1,0 +1,83 @@
+.contact-section {
+    background-color: #f2ede4; /* Color crema de fondo */
+    color: #1a1a1a;
+    min-height: 80vh;
+}
+
+/* Tipografía de Encabezado */
+.contact-label {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 4px;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.contact-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.contact-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+/* Iconos y Datos */
+.icon-box {
+    background-color: #efe2d5;
+    color: #c57d4d;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tarjeta del Formulario */
+.contact-form-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+/* Inputs Personalizados */
+.custom-input {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.custom-input:focus {
+    background-color: #fff;
+    border-color: #c57d4d;
+    box-shadow: 0 0 0 0.25rem rgba(197, 125, 77, 0.25)t;
+    outline: none;
+}
+
+/* Botón de Envío (Terracota) */
+.btn-send {
+    background-color: #c57d4d;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-send:hover {
+    background-color: #a6653a;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Ajustes Responsive */
+@media (max-width: 768px) {
+    .contact-title {
+        font-size: 2.5rem;
+    }
+}

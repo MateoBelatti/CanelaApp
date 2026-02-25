@@ -1,0 +1,56 @@
+/* Estilo General del Header */
+.header {
+    background-color: #f8f6f2; /* Fondo crema suave como en las fotos */
+    border: none;
+    transition: all 0.3s ease;
+}
+
+/* Tipografía del Logo */
+.logo h1 {
+    font-family: 'Playfair Display', serif; /* Misma fuente que usamos en AboutMe */
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 4px; /* Espaciado entre letras clave para el estilo lujo */
+    color: #000;
+}
+
+/* Navegación */
+.nav-link {
+    font-family: 'Inter', sans-serif;
+    color: #555 !important; /* Gris suave */
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    padding: 0 20px !important;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #000 !important;
+}
+
+/* Eliminar el subrayado de la clase active para este estilo minimalista */
+.nav-link.active {
+    color: #000 !important;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Icono de usuario */
+.user-icon-container {
+    cursor: pointer;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.user-icon-container:hover {
+    color: #000;
+}
+
+/* Responsivo: Ajuste de logo en móvil */
+@media (max-width: 768px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+}

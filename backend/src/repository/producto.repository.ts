@@ -21,9 +21,9 @@ class ProductoRepository implements IProductoRepository {
     }
 
     async findById(id: number): Promise<ProductoModel | null>{
-        const categoria = await ProductoModel.findByPk(id);
-        if (!categoria) return null 
-        return categoria;
+        const producto = await ProductoModel.findByPk(id);
+        if (!producto) return null 
+        return producto;
     }
 
     async findByCategoria(idCategoria: number): Promise<IProducto[]> {

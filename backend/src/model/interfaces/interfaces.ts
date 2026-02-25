@@ -18,13 +18,13 @@ export interface ICategoria {
 /* ================= PRODUCTO ================= */
 
 export interface IProducto {
-    id_producto?: number;
-    imagen_producto?: string | null;
+    id_producto: number;
+    imagen_producto: string | null;
     nombre: string;
     descripcion: string;
     precio: number;
     stock: number;
-    activo?: boolean;
+    activo: boolean;
     id_categoria: number;
 }
 

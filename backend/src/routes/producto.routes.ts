@@ -12,6 +12,7 @@ const routerProducto = Router();
 
 routerProducto.get("/", ProductoController.getAll);
 routerProducto.get("/:id", ProductoController.getById);
+routerProducto.get("/:idCategoria", ProductoController.getProductosByCategoria);
 
 routerProducto.post(
     "/",

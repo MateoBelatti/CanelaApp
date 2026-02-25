@@ -16,3 +16,13 @@ export interface UpdateProductoDTO {
     activo?: boolean;
     id_categoria?: number;
 }
+export interface ResProducto {
+    id_producto : number,
+    imagen_producto: string | null;
+    nombre: string;
+    descripcion: string;
+    precio: number;
+    stock: number;
+    activo: boolean;
+    id_categoria: number;
+}

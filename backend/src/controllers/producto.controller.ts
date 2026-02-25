@@ -26,6 +26,19 @@ class ProductoController {
         }
     }
 
+    async getProductosByCategoria(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { idCategoria } = req.params;
+            if (!idCategoria || isNaN(Number(idCategoria))) {
+                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+            }
+            const productos = await ProductoService.getProductosByCategoria(Number(idCategoria));
+            return res.status(200).json(productos);
+        } catch (error) {
+            next(error);
+        }
+    }
+
     async create(req: Request, res: Response, next: NextFunction) {
         try {
             const data: CreateProductoDTO = req.body;

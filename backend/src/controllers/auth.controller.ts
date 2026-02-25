@@ -26,6 +26,7 @@ async function authController(req: Request, res: Response) {
             secret_Api,
             { expiresIn: 3600 }
         ); //1HS
+        // Al registrar verificar que el carrito exista si no existe crear un carrito
 
         res.status(200).json({ message: 'Inicio Sesion Correctamente', token: token });
         } catch (error) {

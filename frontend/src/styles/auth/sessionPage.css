@@ -1,0 +1,32 @@
+.session-page {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.session-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+}
+
+.nav-buttons button:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.nav-buttons button:last-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.nav-buttons .btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-buttons .btn:hover {
+  transform: translateY(-2px);
+}
+
+.session-wrapper {
+  min-height: calc(100vh - 80px); /* resta altura del navbar */
+  background: #f8f9fa;
+}

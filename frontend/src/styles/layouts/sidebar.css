@@ -1,0 +1,70 @@
+:root {
+  --sidebar-width: 280px; /* Ancho fijo para la sidebar */
+  --active-bg: #f3f2ff;
+  --active-text: #635bff;
+}
+
+/* Sidebar estilo 'Drawer' (oculta por defecto) */
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100vh;
+  position: fixed; /* Importante para que flote sobre el contenido */
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out; /* Animación suave */
+  transform: translateX(-100%); /* Oculta completamente a la izquierda */
+  overflow-y: auto; /* Permite scroll si el contenido es largo */
+}
+
+/* Clase que se aplica para mostrar la sidebar */
+.sidebar.show {
+  transform: translateX(0); /* Vuelve a la posición visible */
+}
+
+/* Botones de navegación (estilo de la imagen) */
+.nav-item-btn {
+  border-radius: 8px;
+  color: #4a4a4a;
+  transition: all 0.2s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.nav-item-btn:hover {
+  background-color: #f8f9fa;
+}
+
+.nav-item-btn.active {
+  background-color: var(--active-bg);
+  color: var(--active-text);
+}
+
+.nav-item-btn p {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.avatar {
+  object-fit: cover;
+}
+
+/* Botón flotante para abrir la sidebar */
+.open-btn-floating {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay opaco detrás de la sidebar */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  transition: opacity 0.3s ease;
+}

@@ -17,7 +17,7 @@ class ProductoController {
             const { id } = req.params;
             // Validación básica antes de llamar al service
             if (!id || isNaN(Number(id))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido getById" });
             }
             const producto = await ProductoService.getById(Number(id));
             res.status(200).json(producto);
@@ -30,7 +30,7 @@ class ProductoController {
         try {
             const { idCategoria } = req.params;
             if (!idCategoria || isNaN(Number(idCategoria))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido productosCategoria" });
             }
             const productos = await ProductoService.getProductosByCategoria(Number(idCategoria));
             return res.status(200).json(productos);
@@ -54,7 +54,7 @@ class ProductoController {
             const { id } = req.params;
             // Validación básica antes de llamar al service
             if (!id || isNaN(Number(id))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido update" });
             }
             const data: UpdateProductoDTO = req.body;
             const producto = await ProductoService.update(Number(id), data);
@@ -69,10 +69,10 @@ class ProductoController {
             const { id } = req.params;
             // Validación básica antes de llamar al service
             if (!id || isNaN(Number(id))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido delte" });
             }
             await ProductoService.delete(Number(id));
-            res.status(204).send();
+            return res.status(204).send();
         } catch (error) {
             next(error);
         }

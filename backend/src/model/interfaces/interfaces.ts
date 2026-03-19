@@ -38,7 +38,7 @@ export interface ICarrito {
 /* ============ DETALLE CARRITO ============ */
 
 export interface IDetalleCarrito {
-    id_detalle_carrito?: number;
+    id_detalle_carrito: number;
     id_carrito: number;
     id_producto: number;
     cantidad: number;

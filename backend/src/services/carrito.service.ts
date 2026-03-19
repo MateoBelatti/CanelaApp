@@ -23,6 +23,8 @@ class ServiceCarrito {
         const detalle = await detalleCarritoRepository.findByCarritoId(IDcarrito);
         //los tranforma a DTO
         const detalleArray : resDetalleCarritoDTO[] = detalle.map((det) => ({
+            id_detalle_carrito : det.id_detalle_carrito,
+            id_carrito : det.id_carrito,
             id_producto : det.id_producto,
             cantidad : det.cantidad
         }));
@@ -34,7 +36,7 @@ class ServiceCarrito {
         if ( exist ) throw new HttpError("El usuario ya tiene un carrito asociado", 500);
         // crea el carrito 
         const carrito = await carritoRepository.create(data);
-        if (carrito) throw new HttpError("Error al crear Carrito", 401);
+        if (!carrito) throw new HttpError("Error al crear Carrito", 401);
         return carrito;
 
     }

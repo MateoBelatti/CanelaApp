@@ -9,7 +9,7 @@ class DetalleCarritoController {
         try {
             const { idUsuario } = req.params;
             if (!idUsuario || isNaN(Number(idUsuario))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Carrito  createCarrito)" });
             }
             const carrito = await ServiceCarrito.findCarritoByUser(Number(idUsuario));
             if (carrito != null) {
@@ -28,7 +28,7 @@ class DetalleCarritoController {
         try {
             const { idUsuario } = req.params;
             if (!idUsuario || isNaN(Number(idUsuario))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Carrito  getCarrito)" });
             }
             const carrito = await ServiceCarrito.findCarritoByUser(Number(idUsuario));
             res.status(200).json(carrito);
@@ -41,7 +41,9 @@ class DetalleCarritoController {
     async createDetalleCarrito(req: Request, res: Response, next: NextFunction) {
         try {
             const data: createDetalleCarritoDTO = req.body;
+            console.log('prueba1');
             const detalle = await ServiceCarrito.createDetalleCarrito(data);
+            console.log('prueba1');
             res.status(201).json(detalle);
         } catch (error) {
             next(error);
@@ -53,7 +55,7 @@ class DetalleCarritoController {
         try {
             const idDetalle = Number(req.params.idDetalle);
             if (!idDetalle || isNaN(Number(idDetalle))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Carrito  deleteDetalle)" });
             }
             const deleted = await ServiceCarrito.deteleDetalleCarrito(idDetalle);
             if (!deleted) {
@@ -70,7 +72,7 @@ class DetalleCarritoController {
         try {
             const idCarrito = Number(req.params.idCarrito);
             if (!idCarrito || isNaN(Number(idCarrito))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Carrito detDetallesByCarrito)" });
             }
             const detalles = await ServiceCarrito.findAllDetallesByCarrito(idCarrito);
             res.status(200).json(detalles);

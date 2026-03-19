@@ -14,7 +14,7 @@ export const createUsuarioSchema = z.object({
         .min(8, "La contraseña debe tener al menos 8 caracteres"),
 
     rol: z
-        .enum(["ADMIN"])
+        .enum(["USER"])
         .optional(),
 
     direccion: z

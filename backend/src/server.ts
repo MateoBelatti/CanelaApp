@@ -10,6 +10,7 @@ import routeAuth from './routes/auth.routes';
 import routerCategoria from './routes/categoria.routes';
 import routerProducto from './routes/producto.routes';
 import routerCarrito from './routes/carrito.routes';
+import routerDetalleCarrito from './routes/detalleCarrito.routes';
 
 class Server {
     public app: express.Application;
@@ -47,6 +48,7 @@ class Server {
         this.app.use("/api/categoria", routerCategoria);
         this.app.use("/api/producto", routerProducto);
         this.app.use("/api/carrito", routerCarrito);
+        this.app.use("/api/detalleCarrito", routerDetalleCarrito);
         //this.app.use("/rutas", importacionDeRutas);
     }
     async start(callback: () => void) {

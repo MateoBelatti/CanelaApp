@@ -21,7 +21,7 @@ export class CategoriaController {
             // Validacion de ID
             const { id } = req.params;
             if (!id || isNaN(Number(id))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Categoria get)" });
             }
 
             const categoria = await CategoriaService.getById(Number(id));
@@ -49,7 +49,7 @@ export class CategoriaController {
             // Validacion de ID
             const { id } = req.params;
             if (!id || isNaN(Number(id))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Categoria update)" });
             }
 
             // Body validado en Middleware
@@ -67,7 +67,7 @@ export class CategoriaController {
             // Validacion de ID
             const { id } = req.params;
             if (!id || isNaN(Number(id))) {
-                return res.status(400).json({ message: "El ID proporcionado no es válido" });
+                return res.status(400).json({ message: "El ID proporcionado no es válido (Categoria delete)" });
             }
             const deleted = await CategoriaService.delete(Number(id));
             res.status(204).json({"eliminado" : deleted});

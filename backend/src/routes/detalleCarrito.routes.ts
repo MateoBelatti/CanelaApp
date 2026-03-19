@@ -6,21 +6,27 @@ import { validateBody } from "../middlewares/validate";
 // Schema para validar body
 import { createDetalleCarritoSchema } from "../validate/detalleCarrito.validator";
 
-const routerCarrito = Router();
+const routerDetalleCarrito = Router();
 
-// CARRITO
+// DETALLE CARRITO
 // ==========================
 
-routerCarrito.post(
-    "/:idUsuario",
-    [authenticate],
-    DetalleCarritoController.createCarrito
+routerDetalleCarrito.post(
+    "/",
+    [authenticate, validateBody(createDetalleCarritoSchema)],
+    DetalleCarritoController.createDetalleCarrito
 );
 
-routerCarrito.get(
-    "/:idUsuario",
+routerDetalleCarrito.delete(
+    "/:idDetalle",
     [authenticate],
-    DetalleCarritoController.getCarrito
+    DetalleCarritoController.deleteDetalleCarrito
 );
 
-export default routerCarrito;
+routerDetalleCarrito.get(
+    "/:idCarrito",
+    [authenticate],
+    DetalleCarritoController.getDetallesByCarrito
+);
+
+export default routerDetalleCarrito;

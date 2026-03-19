@@ -24,8 +24,8 @@ async function authController(req: Request, res: Response) {
         const token = Jwt.sign(
             { id: result.id, rol: result.rol },
             secret_Api,
-            { expiresIn: 3600 }
-        ); //1HS
+            { expiresIn: 7200 }
+        ); //2HS
         // Al registrar verificar que el carrito exista si no existe crear un carrito
 
         res.status(200).json({ message: 'Inicio Sesion Correctamente', token: token });

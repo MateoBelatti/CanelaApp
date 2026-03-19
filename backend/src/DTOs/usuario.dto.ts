@@ -9,7 +9,7 @@ interface CreateUsuarioDTO{
     nombre : string,
     email : string,
     passwordHash : string,
-    rol : "ADMIN" | "VENDEDOR" | "USER",
+    rol : "USER",
     direccion : string | null,
     telefono : string | null 
 }

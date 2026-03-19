@@ -4,13 +4,13 @@ import { z } from "zod";
 export const createDetalleCarritoSchema = z.object({
     id_carrito: z.number({
         error: "El id del carrito es obligatorio",
-    }).int().positive(),
+    }).positive(),
     
     id_producto: z.number({
         error: "El id del producto es obligatorio",
-    }).int().positive(),
+    }).positive(),
     
     cantidad: z.number({
         error: "La cantidad es obligatoria"
-    }).int().positive()
+    }).positive()
 });

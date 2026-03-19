@@ -1,46 +1,67 @@
-import { products } from "@/src/lib/data"
-import { useAuth } from "@/src/context/AuthContext"
-import { useCart } from "@/src/context/CartContext"
-import { useToast } from "@/src/context/ToastContext"
-import type { Product } from "@/src/types"
-import { ProductCard } from "./ProductCard"
-import "@/src/styles/products.css"
+import { ProductCard } from '../productCard';
+import { useEffect, useState } from 'react';
+// SERVICE
+import  * as productoService from "../../services/producto.service";
+// INTERFACE
+import type { IProducto } from '../../types/interfaces';
+// STYLE
+import '../../styles/home/productSeccion.css';
 
-export function FeaturedProducts() {
-  const featured = products.filter((p) => p.featured)
-  const { isAuthenticated } = useAuth()
-  const { addItem } = useCart()
-  const toast = useToast()
 
-  function handleAdd(product: Product) {
-    if (!isAuthenticated) {
-      toast.error("Inicia sesión para agregar productos al carrito")
-      return
-    }
-    addItem(product)
-    toast.success(`${product.name} agregado al carrito`)
-  }
 
+
+const ProductsSeccion = () => {
+  // Datos de ejemplo basados en tu imagen
+  const [ todosLosProductos, setTodosLosProducto ] = useState<IProducto[]>()
+  
+  useEffect(()=>{
+      const cargarProducto = async () => {
+        try {
+          const productos = await productoService.getProductos();
+          const productosFormat = Promise.all ( 
+            productos.map( (pro)  => { 
+              //cada categoria formateada
+              const format : IProducto = {
+                id_producto: pro.id_producto,
+                imagen_producto: pro.imagen_producto,
+                nombre: pro.nombre,
+                descripcion: pro.descripcion,
+                precio: pro.precio,
+                stock: pro.stock,
+                activo: pro.activo,
+                id_categoria: pro.id_categoria
+              }
+            return format;
+            })); // aca termina el map
+            
+            setTodosLosProducto( await productosFormat);
+          } catch (error) {
+            console.error("Error al cargar los cursos", error)
+          }
+      }
+      cargarProducto();
+  }, [])
   return (
-    <section className="featured-section py-5">
-      <div className="container">
-        <div className="section-header text-center mb-4">
-          <span className="section-label text-uppercase fw-bold">Selección Curada</span>
-          <h2 className="section-title fs-2 mt-2">Productos Destacados</h2>
-          <p className="section-description text-muted">
-            Piezas seleccionadas por nuestro equipo de diseño, pensadas para
-            elevar cada rincón de tu hogar.
+    <section className="featured-products py-5">
+      <div className="container text-center">
+        <header className="mb-5">
+          <span className="text-uppercase tracking-wider selection-text">Selección Curada</span>
+          <h2 className="display-5 fw-bold section-title">Productos Destacados</h2>
+          <p className="mx-auto section-subtitle" style={{ maxWidth: '600px' }}>
+            Piezas seleccionadas por nuestro equipo de diseño, pensadas para elevar cada rincón de tu hogar.
           </p>
-        </div>
+        </header>
 
         <div className="row g-4">
-          {featured.map((product) => (
-            <div key={product.id} className="col-12 col-sm-6 col-lg-3">
-              <ProductCard product={product} onAdd={handleAdd} />
+          {todosLosProductos?.map((product) => (
+            <div key={product.id_producto} className="col-6 col-md-4 col-lg-3">
+              <ProductCard {...product} />
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+export default ProductsSeccion;

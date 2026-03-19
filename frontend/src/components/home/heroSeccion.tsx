@@ -27,7 +27,7 @@ const HeroSection: React.FC = () => {
                         Piezas que transforman espacios en experiencias.
                     </p>
                     <a
-                        href="/productos"
+                        href="/producto"
                         className="btn btn-hero d-inline-flex align-items-center gap-2"
                     >
                         Ver Colección

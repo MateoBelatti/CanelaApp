@@ -1,18 +1,29 @@
-.featured-section {
-  background-color: #f9f9f9;
+/* Tipografía y Colores */
+.featured-products {
+  background-color: #faf8f6; /* Un blanco crema muy suave como en la imagen */
+  color: #1a1a1a;
 }
 
-.section-label {
-  color: #ff6b6b;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
+.selection-text {
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  color: #8c8c8c;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .section-title {
-  margin-top: 0.5rem;
+  font-family: 'Playfair Display', serif; /* Tipografía elegante para títulos */
+  margin-bottom: 1.5rem;
 }
 
-.section-description {
-  margin-top: 0.5rem;
-  font-size: 0.95rem;
+.section-subtitle {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Ajustes opcionales para las columnas si quieres que se vean más fluidas */
+.row.g-4 {
+  margin-top: 2rem;
 }

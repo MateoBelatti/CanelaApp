@@ -1,7 +1,7 @@
 /* Botón base */
 .btn-filter {
   background-color: transparent;
-  border: 1px solid #d1d5db;
+  border: 1px solid #c8ccd1;
   color: #64748b;
   font-size: 0.75rem;
   font-weight: 500;
@@ -14,8 +14,8 @@
 
 /* Botón activo (Naranja tierra de la imagen) */
 .btn-filter.active {
-  background-color: #c48b61;
-  border-color: #c48b61;
+  background-color: #d3aa8d;
+  border-color: #a39f9b;
   color: white;
 }
 
